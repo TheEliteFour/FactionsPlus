@@ -3,7 +3,6 @@ package markehme.factionsplus;
 import markehme.factionsplus.config.Config;
 
 import org.bukkit.ChatColor;
-import org.bukkit.configuration.file.YamlConfiguration;
 
 public class FactionsPlusTemplates {
 	public static String Go(String templateOption, String args[]) {
@@ -57,37 +56,54 @@ public class FactionsPlusTemplates {
 			workingstring = Config._templates.warps_already_exists._;
 		}
 		
+		if(templateOption == "faction_need") {
+			workingstring = Config._templates.faction_need._;
+		}
+		
+		
 		workingstring = colorFormat(workingstring);
 		
 		if(args != null) {			
-			if(args.length == 2) {
-				workingstring = workingstring.replace("!1", args[1]);
+			if(args.length == 1) {
+				workingstring = workingstring.replace("!1", args[0]);
 	
+				return(workingstring);
+			}
+			
+			if(args.length == 2) {
+				workingstring = workingstring.replace("!1", args[0]);
+				workingstring = workingstring.replace("!2", args[1]);
 				return(workingstring);
 			}
 			
 			if(args.length == 3) {
-				workingstring = workingstring.replace("!1", args[1]);
-				workingstring = workingstring.replace("!2", args[2]);
+				workingstring = workingstring.replaceAll("!1", args[0]);
+				workingstring = workingstring.replaceAll("!2", args[1]);
+				workingstring = workingstring.replaceAll("!3", args[2]);
+	
 				return(workingstring);
 			}
 			
 			if(args.length == 4) {
-				workingstring = workingstring.replaceAll("!1", args[1]);
-				workingstring = workingstring.replaceAll("!2", args[2]);
-				workingstring = workingstring.replaceAll("!3", args[3]);
-	
-				return(workingstring);
-			}
-			
-			if(args.length == 5) {
-				workingstring = workingstring.replace("!1", args[1]);
-				workingstring = workingstring.replace("!2", args[2]);
-				workingstring = workingstring.replace("!3", args[3]);
+				workingstring = workingstring.replace("!1", args[0]);
+				workingstring = workingstring.replace("!2", args[1]);
+				workingstring = workingstring.replace("!3", args[2]);
 				workingstring = workingstring.replace("!4", args[4]);
 	
 				return(workingstring);		
 			}
+			
+			if(args.length == 5) {
+				workingstring = workingstring.replace("!1", args[0]);
+				workingstring = workingstring.replace("!2", args[1]);
+				workingstring = workingstring.replace("!3", args[2]);
+				workingstring = workingstring.replace("!4", args[4]);
+				workingstring = workingstring.replace("!5", args[5]);
+				
+				return(workingstring);		
+			}
+			
+
 		}
 
 		return workingstring;
